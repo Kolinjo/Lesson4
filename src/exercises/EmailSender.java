@@ -2,6 +2,8 @@ package exercises;
 
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class EmailSender {
 
 	void go() {
@@ -9,9 +11,21 @@ public class EmailSender {
 		 * Use the methods below to send an email and print a warning if the email did
 		 * not send correctly.
 		 */
+		
+		String email = JOptionPane.showInputDialog("Enter email address of the recipient:");
+
+		setEmailAddress(email);
+		
+		String message = JOptionPane.showInputDialog("Enter some message:");
+		
+		if (send(message)) {
+			JOptionPane.showMessageDialog(null, "Email was successfully sent.");
+		}else {
+			JOptionPane.showMessageDialog(null, "Email was not successfully sent");
+		}
+	}
 
 		
-	}
 
 	/* Returns true if email was sent successfully, false if it failed to send. */
 	boolean send(String greeting) {
