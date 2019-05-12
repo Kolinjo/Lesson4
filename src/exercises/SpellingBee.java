@@ -20,9 +20,23 @@ public class SpellingBee {
 	 * word, but if they do not spell it right ask again. The only place that you
 	 * need to write code in is the stuffForYouToDo() method.
 	 */
-	
+
 	void stuffForYouToDo() {
-		// Write your code here...
+		
+	do {
+		speak(getRandomWord());
+		System.out.println(getRandomWord());
+		
+		String word = JOptionPane.showInputDialog("Spell the word that you hear.");
+		
+		if (word.equals(getRandomWord())) {
+			JOptionPane.showMessageDialog(null, "Spelling correctly!!");	
+			
+		}
+	}while (false); {
+			JOptionPane.showMessageDialog(null, "Wrongly spelled, try again.");
+		
+	}
 		
 		
 		
@@ -31,7 +45,7 @@ public class SpellingBee {
 	public String getRandomWord() {
 		return words.get(new Random().nextInt(lines));
 	}
-	
+
 	public void speak(String words) {
 		SpeechSynthesizer speaker = new SpeechSynthesizer("speaker");
 		speaker.synthesize(words);
@@ -43,12 +57,14 @@ public class SpellingBee {
 	public SpellingBee() {
 		try {
 			// Get the amount of lines
-			LineNumberReader lnr = new LineNumberReader(new FileReader(new File("/usr/share/dict/words")));
+			LineNumberReader lnr = new LineNumberReader(
+					new FileReader(new File("C:\\Users\\Marko Kozic\\Desktop\\words.txt")));
 			lnr.skip(Long.MAX_VALUE);// Skip to the end
 			lines = lnr.getLineNumber();// Get last line number
 			System.out.println(lines + " words loaded.");
 			lnr.close();
-			BufferedReader br = new BufferedReader(new FileReader(new File("/usr/share/dict/words")));
+			BufferedReader br = new BufferedReader(
+					new FileReader(new File("C:\\Users\\Marko Kozic\\Desktop\\words.txt")));
 			for (int i = 0; i < lines; i++) {
 				words.add(br.readLine()); // adds every line to the array
 			}
